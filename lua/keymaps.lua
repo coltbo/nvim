@@ -1,17 +1,18 @@
 local opts = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
+local builtin = require("telescope.builtin")
+local dap = require("dap")
 
 vim.g.mapleader = ','
 
 map('n', "<C-r>", "<cmd>luafile %<cr>", opts)
 
 -- {{{ telescope
-map('n', '<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', opts)
-map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', opts)
-map('n', '<leader>fb', '<cmd>lua require(\'telescope.builtin\').buffers()<cr>', opts)
-map('n', '<leader>fh', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>', opts)
-map('n', '<leader>fo', '<cmd>lua require(\'telescope.builtin\').lsp_document_symbols()<cr>', opts)
-map('n', '<leader>fp', '<cmd>Telescope projects<cr>', opts)
+map('n', '<leader>ff', builtin.find_files, opts)
+map('n', '<leader>fg', builtin.live_grep, opts)
+map('n', '<leader>fb', builtin.buffers, opts)
+map('n', '<leader>fh', builtin.help_tags, opts)
+map('n', '<leader>fo', builtin.lsp_document_symbols, opts)
 map('n', '<leader>fk', '<cmd>Telescope keymaps<cr>', opts)
 map('n', '<leader>fc', '<cmd>Telescope colorscheme<cr>', opts)
 -- }}}
@@ -23,11 +24,11 @@ map("n", "<A-.>", "<cmd>tabnext<cr>", opts)
 -- }}}
 
 -- {{{ dap 
-map("n", "<F5>", "<cmd>lua require('dap').continue()<cr>", opts)
-map("n", "<F10>", "<cmd>lua require('dap').step_over()<cr>", opts)
-map("n", "<F11>", "<cmd>lua require('dap').step_into()<cr>", opts)
-map("n", "<F12>", "<cmd>lua require('dap').step_out()<cr>", opts)
-map("n", "<C-b>", "<cmd>lua require('dap').toggle_breakpoint()<cr>", opts)
+map("n", "<F5>", dap.continue, opts)
+map("n", "<F10>", dap.step_over, opts)
+map("n", "<F11>", dap.step_into, opts)
+map("n", "<F12>", dap.step_out, opts)
+map("n", "<C-b>", dap.toggle_breakpoint, opts)
 map("n", "<C-S-b>", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts)
 -- }}}
 

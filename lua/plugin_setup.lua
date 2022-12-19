@@ -1,7 +1,7 @@
 require("nvim-autopairs").setup {}
-require("project_nvim").setup {}
+-- require("project_nvim").setup {}
 require("telescope").setup {}
-require("telescope").load_extension("projects")
+-- require("telescope").load_extension("projects")
 require("telescope").load_extension("fzy_native")
 require("nvim-dap-virtual-text").setup {}
 require("nvim-treesitter.configs").setup {
@@ -28,7 +28,7 @@ require("gitsigns").setup()
 -- }}}
 
 -- {{{ material 
-vim.g.material_style = "oceanic"
+vim.g.material_style = "darker"
 require('material').setup({
 
     contrast = {
@@ -62,7 +62,7 @@ require('material').setup({
     --     -- "neogit",
         "nvim-cmp",
     --     -- "nvim-navic",
-    --     -- "nvim-tree",
+        "nvim-tree",
         "nvim-web-devicons",
     --     -- "sneak",
         "telescope",
@@ -92,3 +92,10 @@ require('material').setup({
 
 vim.cmd[[colorscheme material]]
 -- }}}
+
+require("bufferline").setup {
+  options = {
+    mode = "tabs",
+    diagnostics = "nvim_lsp"
+  }
+}

@@ -40,6 +40,3 @@ vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 -- {{{ vim gui
 vim.opt.guifont = { "Hack Nerd Font Mono:h11" }
 -- }}}
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1

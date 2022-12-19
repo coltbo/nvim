@@ -7,7 +7,7 @@ return require("packer").startup(function(use)
   -- {{{ helpful plugins
   use "nvim-lua/plenary.nvim"
   use "BurntSushi/ripgrep"
-  use "ahmedkhalf/project.nvim"
+  -- use "ahmedkhalf/project.nvim"
   use "akinsho/toggleterm.nvim"
   -- }}}
 
@@ -69,4 +69,6 @@ return require("packer").startup(function(use)
   -- {{{ git 
   use "lewis6991/gitsigns.nvim"
   -- }}}
+
+  use {'akinsho/bufferline.nvim', tag = "v3.*" }
 end)

@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/home/colten/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -103,6 +108,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["express_line.nvim"] = {
+    loaded = true,
+    path = "/home/colten/.local/share/nvim/site/pack/packer/start/express_line.nvim",
+    url = "https://github.com/tjdevries/express_line.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/colten/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["gruvbox.nvim"] = {
     loaded = true,
@@ -139,20 +154,10 @@ _G.packer_plugins = {
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/material.nvim",
     url = "https://github.com/marko-cerovac/material.nvim"
   },
-  ["moonlight.nvim"] = {
-    loaded = true,
-    path = "/home/colten/.local/share/nvim/site/pack/packer/start/moonlight.nvim",
-    url = "https://github.com/shaunsingh/moonlight.nvim"
-  },
   ["nightfox.nvim"] = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
     url = "https://github.com/EdenEast/nightfox.nvim"
-  },
-  ["nord.nvim"] = {
-    loaded = true,
-    path = "/home/colten/.local/share/nvim/site/pack/packer/start/nord.nvim",
-    url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -204,11 +209,6 @@ _G.packer_plugins = {
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["project.nvim"] = {
-    loaded = true,
-    path = "/home/colten/.local/share/nvim/site/pack/packer/start/project.nvim",
-    url = "https://github.com/ahmedkhalf/project.nvim"
-  },
   ripgrep = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/ripgrep",
@@ -218,11 +218,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
-  },
-  ["solarized.nvim"] = {
-    loaded = true,
-    path = "/home/colten/.local/share/nvim/site/pack/packer/start/solarized.nvim",
-    url = "https://github.com/shaunsingh/solarized.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
