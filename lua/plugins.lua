@@ -7,8 +7,9 @@ return require("packer").startup(function(use)
   -- {{{ helpful plugins
   use "nvim-lua/plenary.nvim"
   use "BurntSushi/ripgrep"
-  -- use "ahmedkhalf/project.nvim"
+  use "folke/which-key.nvim"
   use "akinsho/toggleterm.nvim"
+  use "lukas-reineke/indent-blankline.nvim"
   -- }}}
 
   -- {{{ lsp
@@ -60,6 +61,7 @@ return require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate"
   }
+  use "nvim-telescope/telescope-file-browser.nvim"
   -- }}}
 
   -- {{{ rust
@@ -69,6 +71,4 @@ return require("packer").startup(function(use)
   -- {{{ git 
   use "lewis6991/gitsigns.nvim"
   -- }}}
-
-  use {'akinsho/bufferline.nvim', tag = "v3.*" }
 end)

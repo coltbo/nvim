@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
     url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/colten/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["jellybeans-nvim"] = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/jellybeans-nvim",
@@ -219,6 +224,11 @@ _G.packer_plugins = {
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
   },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/home/colten/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
+  },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
@@ -243,6 +253,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/colten/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/colten/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
