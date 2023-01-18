@@ -9,3 +9,7 @@ vim.keymap.set("n", "<F11>", dap.step_into, opts)
 vim.keymap.set("n", "<F12>", dap.step_out, opts)
 vim.keymap.set("n", "<C-b>", dap.toggle_breakpoint, opts)
 vim.keymap.set("n", "<C-S-b>", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts)
+
+vim.keymap.set("n", "<leader>do", "<cmd>lua require('dapui').open()<cr>", opts)
+vim.keymap.set("n", "<leader>dc", "<cmd>lua require('dapui').close()<cr>", opts)
+vim.keymap.set("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<cr>", opts)

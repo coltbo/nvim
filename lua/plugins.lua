@@ -10,6 +10,7 @@ return require("packer").startup(function(use)
   use "folke/which-key.nvim"
   use "akinsho/toggleterm.nvim"
   use "lukas-reineke/indent-blankline.nvim"
+  use "mbbill/undotree"
   -- }}}
 
   -- {{{ lsp

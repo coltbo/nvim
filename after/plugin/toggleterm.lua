@@ -1,3 +1,10 @@
+local opts = { noremap = true, silent = true }
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  direction = "float",
+  hidden = true })
+
 require("toggleterm").setup {
   open_mapping = [[<c-\>]],
   insert_mappings = true,
@@ -11,3 +18,9 @@ function _G.set_terminal_keymaps()
   vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
 end
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.keymap.set("n", "<leader>g", "<cmd>lua _lazygit_toggle()<cr>", opts)
