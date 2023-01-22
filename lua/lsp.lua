@@ -13,6 +13,10 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local on_attach = function(client, bufnr)
   if client.config.root_dir ~= nil then
     vim.api.nvim_set_current_dir(client.config.root_dir)
+  else
+    vim.ui.input({ prompt = "Enter value for root directory: "}, function(input)
+      vim.api.nvim_set_current_dir(input)
+    end)
   end
 
   -- Enable completion triggered by <c-x><c-o>
@@ -21,23 +25,22 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = bufnr, desc = "Goto declaration"})
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Goto definition" })
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr, desc = "Goto implementation" })
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { buffer = bufnr, desc = "Add workspace folder" })
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, { buffer = bufnr, desc = "Remove workspace folder" })
   vim.keymap.set('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  end, { buffer = bufnr, desc = "List workspace folders" })
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Show type definition" })
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr, desc = "List references" })
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, { buffer = bufnr, desc = "Format document" })
 end
-
 
 -- {{{ mason setup 
 require("mason").setup()
@@ -49,15 +52,6 @@ require("mason-lspconfig").setup_handlers {
       capabilities = capabilities,
     }
   end,
-
-  ["rust_analyzer"] = function ()
-    require("rust-tools").setup {
-      server = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-      },
-    }
-  end
 }
 
 -- {{{ dap config 
@@ -110,10 +104,10 @@ require("mason-nvim-dap").setup_handlers {
 -- }}}
 
 -- Add additional capabilities supported by nvim-cmp
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "Show diagnostics"})
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Goto next diagnostic" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { desc = "Add buffer diagnostics to the location list" })
 
 -- luasnip setup
 local luasnip = require('luasnip')
@@ -129,7 +123,7 @@ cmp.setup({
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),

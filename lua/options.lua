@@ -37,6 +37,7 @@ vim.o.completeopt  = "menuone,noinsert,noselect"
 vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 -- }}}
 
+-- TODO change this!
 -- {{{ vim gui
 vim.opt.guifont = { "Hack Nerd Font Mono:h11" }
 -- }}}

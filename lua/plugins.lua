@@ -15,7 +15,6 @@ return require("packer").startup(function(use)
 
   -- {{{ lsp
   use "neovim/nvim-lspconfig"
-  use "folke/trouble.nvim"
   -- }}}
 
   -- {{{ mason
@@ -52,7 +51,6 @@ return require("packer").startup(function(use)
   use "marko-cerovac/material.nvim"
   use "rktjmp/lush.nvim"
   use "metalelf0/jellybeans-nvim"
-  use "ellisonleao/gruvbox.nvim"
   -- }}}
 
   -- {{{ telescope
@@ -65,11 +63,9 @@ return require("packer").startup(function(use)
   use "nvim-telescope/telescope-file-browser.nvim"
   -- }}}
 
-  -- {{{ rust
-  use "simrat39/rust-tools.nvim"
-  -- }}}
-
   -- {{{ git 
   use "lewis6991/gitsigns.nvim"
   -- }}}
+
+  use "folke/todo-comments.nvim"
 end)
