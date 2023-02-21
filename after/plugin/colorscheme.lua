@@ -96,4 +96,5 @@ require('nightfox').setup({
 })
 
 -- setup must be called before loading
-vim.cmd("colorscheme jellybeans-nvim")
+-- vim.cmd("colorscheme jellybeans-nvim")
+vim.cmd('colorscheme base16-default-dark')

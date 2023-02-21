@@ -15,3 +15,10 @@ vim.api.nvim_create_autocmd(
   "TermOpen",
   { pattern = "term://*", command = "lua set_terminal_keymaps()" }
 )
+
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
