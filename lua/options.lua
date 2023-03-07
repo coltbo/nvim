@@ -4,7 +4,7 @@ vim.o.conceallevel  = 0 -- Don't hide quotes in markdown
 vim.o.cmdheight     = 1
 vim.o.pumheight     = 10
 vim.o.showmode      = false
-vim.o.showtabline   = 2 -- Always show tabline
+vim.o.showtabline   = 1 -- Always show tabline
 vim.o.title         = true
 vim.o.termguicolors = true -- Use true colors, required for some plugins
 vim.o.wrap          = true
@@ -37,7 +37,4 @@ vim.o.completeopt  = "menuone,noinsert,noselect"
 vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 -- }}}
 
--- TODO change this!
--- {{{ vim gui
-vim.opt.guifont = { "Hack Nerd Font Mono:h11" }
--- }}}
+vim.opt.guifont = { "JetBrainsMono Nerd Font", "h12" }

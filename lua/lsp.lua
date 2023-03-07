@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { buffer = bufnr, desc = "Add workspace folder" })
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
-      { buffer = bufnr, desc = "Remove workspace folder" })
+    { buffer = bufnr, desc = "Remove workspace folder" })
   vim.keymap.set('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, { buffer = bufnr, desc = "List workspace folders" })
@@ -31,19 +31,19 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr, desc = "List references" })
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end,
-      { buffer = bufnr, desc = "Format document" })
+    { buffer = bufnr, desc = "Format document" })
 end
 
 -- {{{ mason setup
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers {
-    function(server_name)
-      lspconfig[server_name].setup {
-          on_attach = on_attach,
-          capabilities = capabilities,
-      }
-    end,
+  function(server_name)
+    lspconfig[server_name].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end,
 }
 
 -- {{{ dap config
@@ -61,13 +61,13 @@ end
 -- }}}
 
 require("mason-nvim-dap").setup({
-    automatic_setup = true
+  automatic_setup = true
 })
 
 require("mason-nvim-dap").setup_handlers {
-    function(source_name)
-      require("mason-nvim-dap.automatic_setup")(source_name)
-    end,
+  function(source_name)
+    require("mason-nvim-dap.automatic_setup")(source_name)
+  end,
 }
 -- }}}
 
@@ -77,11 +77,8 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Goto next diagnost
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { desc = "Add buffer diagnostics to the location list" })
 
--- luasnip setup
-local luasnip = require('luasnip')
-
--- nvim-cmp setup
-local cmp = require('cmp')
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 local has_words_before = function()
   unpack = unpack or table.unpack
@@ -90,61 +87,136 @@ local has_words_before = function()
 end
 
 cmp.setup({
-    snippet = {
-        expand = function(args)
-          require('luasnip').lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-d>'] = cmp.mapping.scroll_docs( -4),
-        ['<C-u>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-    }),
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    }),
-    {
-        { name = 'buffer' },
-    }
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs( -4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer' },
+  })
 })
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-        { name = 'buffer' },
-    })
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
+  })
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' }
-    }
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    })
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })
+
+
+-- luasnip setup
+
+-- nvim-cmp setup
+-- local cmp = require('cmp')
+
+-- local has_words_before = function()
+--   unpack = unpack or table.unpack
+--   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+--   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+-- end
+
+-- cmp.setup({
+--     snippet = {
+--         expand = function(args)
+--           require('luasnip').lsp_expand(args.body)
+--         end,
+--     },
+--     mapping = cmp.mapping.preset.insert({
+--         ['<C-d>'] = cmp.mapping.scroll_docs( -4),
+--         ['<C-u>'] = cmp.mapping.scroll_docs(4),
+--         ['<C-Space>'] = cmp.mapping.complete(),
+--         ['<C-e>'] = cmp.mapping.abort(),
+--         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+--         ['<Tab>'] = cmp.mapping(function(fallback)
+--           if cmp.visible() then
+--             cmp.select_next_item()
+--           elseif luasnip.expand_or_jumpable() then
+--             luasnip.expand_or_jump()
+--           elseif has_words_before() then
+--             cmp.complete()
+--           else
+--             fallback()
+--           end
+--         end, { "i", "s" }),
+--     }),
+--     sources = cmp.config.sources({
+--         { name = 'nvim_lsp' },
+--         { name = 'luasnip' },
+--     }),
+--     {
+--         { name = 'buffer' },
+--     }
+-- })
+
+-- Set configuration for specific filetype.
+-- cmp.setup.filetype('gitcommit', {
+--     sources = cmp.config.sources({
+--         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+--     }, {
+--         { name = 'buffer' },
+--     })
+-- })
+
+-- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline('/', {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = {
+--         { name = 'buffer' }
+--     }
+-- })
+
+-- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline(':', {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = cmp.config.sources({
+--         { name = 'path' }
+--     }, {
+--         { name = 'cmdline' }
+--     })
+-- })

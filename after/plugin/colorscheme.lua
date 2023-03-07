@@ -1,4 +1,4 @@
-vim.g.material_style = "darker"
+vim.g.material_style = "deep ocean"
 require('material').setup({
   contrast = {
     terminal = true, -- Enable contrast for the built-in terminal
@@ -98,3 +98,4 @@ require('nightfox').setup({
 -- setup must be called before loading
 -- vim.cmd("colorscheme jellybeans-nvim")
 vim.cmd('colorscheme base16-default-dark')
+-- vim.cmd('colorscheme material')
