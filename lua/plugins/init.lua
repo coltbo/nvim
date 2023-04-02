@@ -1,4 +1,5 @@
 return {
+  "tpope/vim-commentary",
   "nvim-lua/plenary.nvim",
   "BurntSushi/ripgrep",
   "RRethy/nvim-base16",
@@ -7,6 +8,40 @@ return {
   "nvim-telescope/telescope-file-browser.nvim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      -- keymaps
+      vim.keymap.set('n', '<F9>', "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "DAP toggle breakpoint" })
+      vim.keymap.set('n', '<F5>', "<cmd>lua require('dap').continue()<cr>", { desc = "DAP continue" })
+      vim.keymap.set('n', '<F11>', "<cmd>lua require('dap').step_into()<cr>", { desc = "DAP step into" })
+      vim.keymap.set('n', '<F10>', "<cmd>lua require('dap').step_over()<cr>", { desc = "DAP step over" })
+      vim.keymap.set('n', '<leader>dr', "<cmd>lua require('dap').repl.open()<cr>", { desc = "DAP open REPL" })
+
+      local dap = require('dap')
+      dap.adapters.codelldb = {
+        type = 'server',
+        port = "${port}",
+        executable = {
+          command = '/home/colten/.local/share/nvim/mason/bin/codelldb',
+          args = { "--port", "${port}" },
+        }
+      }
+
+      dap.configurations.rust = {
+        {
+          name = "Launch file",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+        },
+      }
+    end
+  },
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
@@ -14,13 +49,12 @@ return {
   "hrsh7th/nvim-cmp",
   {
     "L3MON4D3/LuaSnip",
-    config = function ()
+    config = function()
       require("luasnip").setup {
         history = false
       }
     end
   },
-  --    "williamboman/mason-dap.nvim",
   "kyazdani42/nvim-web-devicons",
   {
     "tjdevries/express_line.nvim",
@@ -49,5 +83,6 @@ return {
         show_current_context_start = true,
       }
     end,
-  }
+  },
+  "elkowar/yuck.vim",
 }
