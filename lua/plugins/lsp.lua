@@ -9,7 +9,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Goto definition" })
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr, desc = "Goto implementation" })
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
+  vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { buffer = bufnr, desc = "Add workspace folder" })
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
     { buffer = bufnr, desc = "Remove workspace folder" })

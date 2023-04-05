@@ -11,6 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.mapleader = ","
 
 require("lazy").setup("plugins")
@@ -57,4 +60,6 @@ vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 vim.opt.guifont    = { "JetBrainsMono Nerd Font", "h12" }
 -- }}}
 
-vim.cmd [[colorscheme base16-default-dark]]
+vim.cmd [[colorscheme catppuccin]]
+
+require('keybinds')

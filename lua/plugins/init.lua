@@ -3,6 +3,26 @@ return {
   "nvim-lua/plenary.nvim",
   "BurntSushi/ripgrep",
   "RRethy/nvim-base16",
+  { 
+    "catppuccin/nvim", 
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",
+      })
+    end
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+      vim.keymap.set('n', '<leader>n', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle Nvim Tree" })
+    end,
+  },
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-fzy-native.nvim",
   "nvim-telescope/telescope-file-browser.nvim",
