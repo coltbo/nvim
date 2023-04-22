@@ -1,8 +1,19 @@
 return {
   -- {{{ utilities
+  "nvim-telescope/telescope.nvim",
+  "nvim-telescope/telescope-fzy-native.nvim",
+  "nvim-telescope/telescope-file-browser.nvim",
   "tpope/vim-commentary",
   "nvim-lua/plenary.nvim",
   "BurntSushi/ripgrep",
+  {
+    "folke/which-key.nvim",
+    config = function ()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup()
+    end
+  },
   {
     "windwp/nvim-autopairs",
     config = function()
@@ -64,9 +75,6 @@ return {
   },
   -- }}}
 
-  "nvim-telescope/telescope.nvim",
-  "nvim-telescope/telescope-fzy-native.nvim",
-  "nvim-telescope/telescope-file-browser.nvim",
 
   -- {{{ lsp
   "williamboman/mason.nvim",

@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 require("lazy").setup("plugins")
 
@@ -24,7 +24,7 @@ vim.o.conceallevel  = 0 -- Don't hide quotes in markdown
 vim.o.cmdheight     = 1
 vim.o.pumheight     = 10
 vim.o.showmode      = false
-vim.o.showtabline   = 2    -- Always show tabline
+vim.o.showtabline   = 1    -- Always show tabline
 vim.o.title         = true
 vim.o.termguicolors = true -- Use true colors, required for some plugins
 vim.o.wrap          = true
