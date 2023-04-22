@@ -2,9 +2,10 @@ return {
   "tpope/vim-commentary",
   "nvim-lua/plenary.nvim",
   "BurntSushi/ripgrep",
-  "RRethy/nvim-base16",
-  { 
-    "catppuccin/nvim", 
+  -- {{{ colorschemes
+  "rktjmp/lush.nvim",
+  {
+    "catppuccin/nvim",
     name = "catppuccin",
     config = function()
       require("catppuccin").setup({
@@ -13,16 +14,11 @@ return {
     end
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    dependencies = {
-      "kyazdani42/nvim-web-devicons",
-    },
-    config = function()
-      require("nvim-tree").setup {}
-      vim.keymap.set('n', '<leader>n', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle Nvim Tree" })
-    end,
+    'rose-pine/neovim',
+    name = 'rose-pine',
   },
+  -- }}}
+  "tpope/vim-fugitive",
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-fzy-native.nvim",
   "nvim-telescope/telescope-file-browser.nvim",
@@ -31,6 +27,8 @@ return {
   {
     "mfussenegger/nvim-dap",
     config = function()
+      local dap = require('dap')
+      local widgets = require('dap.ui.widgets')
       -- keymaps
       vim.keymap.set('n', '<F9>', "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "DAP toggle breakpoint" })
       vim.keymap.set('n', '<F5>', "<cmd>lua require('dap').continue()<cr>", { desc = "DAP continue" })
@@ -38,7 +36,10 @@ return {
       vim.keymap.set('n', '<F10>', "<cmd>lua require('dap').step_over()<cr>", { desc = "DAP step over" })
       vim.keymap.set('n', '<leader>dr', "<cmd>lua require('dap').repl.open()<cr>", { desc = "DAP open REPL" })
 
-      local dap = require('dap')
+      vim.keymap.set('n', '<leader>sc', function()
+        widgets.sidebar(widgets.scopes).open()
+      end, { desc = "DAP open scopes" })
+
       dap.adapters.codelldb = {
         type = 'server',
         port = "${port}",
@@ -47,19 +48,22 @@ return {
           args = { "--port", "${port}" },
         }
       }
-
-      dap.configurations.rust = {
-        {
-          name = "Launch file",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-          end,
-          cwd = '${workspaceFolder}',
-          stopOnEntry = false,
-        },
+      dap.configurations = {
+        c = {
+          {
+            name = "Launch file",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end,
+            cwd = '${workspaceFolder}',
+            stopOnEntry = false,
+          }
+        }
       }
+
+      -- dap.configurations.rust = dap.configurations.cpp
     end
   },
   "hrsh7th/cmp-nvim-lsp",
@@ -75,7 +79,7 @@ return {
       }
     end
   },
-  "kyazdani42/nvim-web-devicons",
+  "nvim-tree/nvim-web-devicons",
   {
     "tjdevries/express_line.nvim",
     config = function()
@@ -104,5 +108,11 @@ return {
       }
     end,
   },
-  "elkowar/yuck.vim",
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    opts = {
+      open_mapping = [[<C-`>]]
+    }
+  }
 }

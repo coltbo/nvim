@@ -24,7 +24,7 @@ vim.o.conceallevel  = 0 -- Don't hide quotes in markdown
 vim.o.cmdheight     = 1
 vim.o.pumheight     = 10
 vim.o.showmode      = false
-vim.o.showtabline   = 1    -- Always show tabline
+vim.o.showtabline   = 2    -- Always show tabline
 vim.o.title         = true
 vim.o.termguicolors = true -- Use true colors, required for some plugins
 vim.o.wrap          = true
@@ -49,17 +49,28 @@ vim.o.mouse         = 'a'
 
 
 -- Vim specific
-vim.o.hidden       = true -- Do not save when switching buffers
-vim.o.fileencoding = "utf-8"
-vim.o.spell        = false
-vim.o.spelllang    = "en_us"
-vim.o.completeopt  = "menuone,noinsert,noselect"
-vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
+-- vim.o.hidden       = true -- Do not save when switching buffers
+-- vim.o.fileencoding = "utf-8"
+-- vim.o.spell        = false
+-- vim.o.spelllang    = "en_us"
+-- vim.o.completeopt  = "menuone,noinsert,noselect"
+-- vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 -- }}}
 
 vim.opt.guifont    = { "JetBrainsMono Nerd Font", "h12" }
 -- }}}
 
+-- {{{ autocmds
+vim.api.nvim_create_autocmd(
+  "TermOpen",
+  {
+    pattern = "*",
+    command = "setlocal nonumber norelativenumber | startinsert | resize 15",
+  }
+)
+-- }}}
+
 vim.cmd [[colorscheme catppuccin]]
+vim.o.background = "dark"
 
 require('keybinds')

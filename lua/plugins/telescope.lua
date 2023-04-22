@@ -11,6 +11,7 @@ return {
     { '<leader>fk', '<cmd>Telescope keymaps<cr>',      { desc = "Keymap browser" } },
     { '<leader>fc', '<cmd>Telescope colorscheme<cr>',  { desc = "Colorscheme browser" } },
     { '<leader>fb', '<cmd>Telescope file_browser<cr>', { desc = "File browser" } },
+    { '<leader>bb', '<cmd>Telescope buffers<cr>',      { desc = "Buffer browser" } },
   },
   config = function()
     require("telescope").setup {
