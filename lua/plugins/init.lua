@@ -41,14 +41,20 @@ return {
   -- {{{ ui
   "nvim-tree/nvim-web-devicons",
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      require("lualine").setup()
+    "tjdevries/express_line.nvim",
+    config = function ()
+      require("el").setup {}
     end
   },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  --   config = function()
+  --     require("lualine").setup()
+  --   end
+  -- },
   {
     "catppuccin/nvim",
     name = "catppuccin",

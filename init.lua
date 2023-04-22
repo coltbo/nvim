@@ -57,7 +57,7 @@ vim.o.mouse         = 'a'
 -- vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 -- }}}
 
-vim.opt.guifont    = { "JetBrainsMono Nerd Font", "h12" }
+vim.opt.guifont = { "JetBrainsMono Nerd Font", "h12" }
 -- }}}
 
 -- {{{ autocmds
