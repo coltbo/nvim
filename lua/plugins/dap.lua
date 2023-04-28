@@ -22,6 +22,13 @@ return {
         args = { "--port", "${port}" },
       }
     }
+
+    dap.adapters.coreclr = {
+      type = "executable",
+      command = "C:/Users/K90008871/AppData/Local/nvim-data/mason/bin/netcoredbg.cmd",
+      args = { "--interpreter=vscode" }
+    }
+
     dap.configurations = {
       c = {
         {
@@ -33,6 +40,16 @@ return {
           end,
           cwd = '${workspaceFolder}',
           stopOnEntry = false,
+        }
+      },
+      cs = {
+        {
+          type = "coreclr",
+          name = "launch - netcoredbg",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "\\bin\\Debug", "file")
+          end
         }
       }
     }

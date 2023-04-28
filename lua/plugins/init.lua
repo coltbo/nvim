@@ -1,60 +1,22 @@
 return {
   -- {{{ utilities
   "nvim-telescope/telescope.nvim",
-  "nvim-telescope/telescope-fzy-native.nvim",
-  "nvim-telescope/telescope-file-browser.nvim",
-  "tpope/vim-commentary",
-  "nvim-lua/plenary.nvim",
-  "BurntSushi/ripgrep",
-  {
-    "folke/which-key.nvim",
-    config = function ()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-      require("which-key").setup()
-    end
-  },
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup {}
-    end
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("indent_blankline").setup {
-        show_current_context = true,
-        show_current_context_start = true,
-      }
-    end,
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    opts = {
-      open_mapping = [[<C-`>]]
-    }
-  },
   -- }}}
 
   -- {{{ ui
   "nvim-tree/nvim-web-devicons",
   {
-    "tjdevries/express_line.nvim",
-    config = function ()
-      require("el").setup {}
-    end
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      options = {
+        icons_enabed = true
+      },
+      sections = {
+        lualine_c = {'windows'}
+      }
+    }
   },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons"
-  --   },
-  --   config = function()
-  --     require("lualine").setup()
-  --   end
-  -- },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -68,6 +30,62 @@ return {
     'rose-pine/neovim',
     name = 'rose-pine',
   },
+  {
+    "EdenEast/nightfox.nvim",
+    opts = {
+      options = {
+        styles = {
+          comments = "italic",
+          constants = "bold",
+          keywords = "italic",
+        }
+      }
+    }
+  },
+  {
+    "marko-cerovac/material.nvim",
+    opts = {
+      styles = {
+        comments = {
+          italic = true
+        },
+        keywords = {
+          italic = true
+        },
+        functions = {
+          bold = true,
+          italic = true
+        }
+      },
+      plugins = {
+        "gitsigns",
+        "nvim-cmp",
+        "nvim-tree",
+        "nvim-web-devicons",
+        "telescope",
+        "which-key"
+      }
+    }
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "rcarriga/nvim-notify",
+    keys = {
+      {
+        "<leader>un",
+        function ()
+          require("notify").dismiss({ silent = true, pending = true })
+        end,
+        desc = "Dismiss all notifications"
+      },
+    },
+    opts = {
+      timeout = 3000,
+    }
+  },
   -- }}}
 
   -- {{{ Git
@@ -78,23 +96,6 @@ return {
     config = function()
       require("gitsigns").setup()
     end
-  },
-  -- }}}
-
-
-  -- {{{ lsp
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-  "hrsh7th/cmp-cmdline",
-  "hrsh7th/nvim-cmp",
-  {
-    "L3MON4D3/LuaSnip",
-    opts = {
-      history = false
-    }
   },
   -- }}}
 }

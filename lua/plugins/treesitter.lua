@@ -5,7 +5,7 @@ return {
   end,
   config = function()
     require("nvim-treesitter.configs").setup {
-      ensure_installed = { "c", "lua", "rust" },
+      ensure_installed = { "c", "lua", "rust", "c_sharp", "javascript" },
       highlight = {
         enable = true
       }
