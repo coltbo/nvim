@@ -4,13 +4,13 @@ return {
     local dap = require('dap')
     local widgets = require('dap.ui.widgets')
     -- keymaps
-    vim.keymap.set('n', '<F9>', "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "DAP toggle breakpoint" })
-    vim.keymap.set('n', '<F5>', "<cmd>lua require('dap').continue()<cr>", { desc = "DAP continue" })
-    vim.keymap.set('n', '<F11>', "<cmd>lua require('dap').step_into()<cr>", { desc = "DAP step into" })
-    vim.keymap.set('n', '<F10>', "<cmd>lua require('dap').step_over()<cr>", { desc = "DAP step over" })
-    vim.keymap.set('n', '<leader>dr', "<cmd>lua require('dap').repl.open()<cr>", { desc = "DAP open REPL" })
+    vim.keymap.set('n', 'db', "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "DAP toggle breakpoint" })
+    vim.keymap.set('n', 'dc', "<cmd>lua require('dap').continue()<cr>", { desc = "DAP continue" })
+    vim.keymap.set('n', 'di', "<cmd>lua require('dap').step_into()<cr>", { desc = "DAP step into" })
+    vim.keymap.set('n', 'do', "<cmd>lua require('dap').step_over()<cr>", { desc = "DAP step over" })
+    vim.keymap.set('n', 'dr', "<cmd>lua require('dap').repl.open()<cr>", { desc = "DAP open REPL" })
 
-    vim.keymap.set('n', '<leader>sc', function()
+    vim.keymap.set('n', 'ds', function()
       widgets.sidebar(widgets.scopes).open()
     end, { desc = "DAP open scopes" })
 
@@ -21,12 +21,6 @@ return {
         command = '/home/colten/.local/share/nvim/mason/bin/codelldb',
         args = { "--port", "${port}" },
       }
-    }
-
-    dap.adapters.coreclr = {
-      type = "executable",
-      command = "C:/Users/K90008871/AppData/Local/nvim-data/mason/bin/netcoredbg.cmd",
-      args = { "--interpreter=vscode" }
     }
 
     dap.configurations = {
@@ -42,14 +36,16 @@ return {
           stopOnEntry = false,
         }
       },
-      cs = {
+      cpp = {
         {
-          type = "coreclr",
-          name = "launch - netcoredbg",
+          name = "Launch file",
+          type = "codelldb",
           request = "launch",
           program = function()
-            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "\\bin\\Debug", "file")
-          end
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
         }
       }
     }
