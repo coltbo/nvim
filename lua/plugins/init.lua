@@ -6,18 +6,6 @@ return {
   -- {{{ ui
   "nvim-tree/nvim-web-devicons",
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      options = {
-        icons_enabed = true
-      },
-      sections = {
-        lualine_c = {'windows'}
-      }
-    }
-  },
-  {
     "catppuccin/nvim",
     name = "catppuccin",
     config = function()
@@ -51,6 +39,7 @@ return {
       }
     }
   },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 },
   -- }}}
 
   -- {{{ Git
