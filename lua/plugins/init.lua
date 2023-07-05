@@ -30,16 +30,34 @@ return {
         }
       },
       plugins = {
+        "dap",
+        "neogit",
         "gitsigns",
         "nvim-cmp",
         "nvim-tree",
         "nvim-web-devicons",
         "telescope",
         "which-key"
+      },
+      disable = {
+        colored_cursor = true,
       }
     }
   },
   { "ellisonleao/gruvbox.nvim", priority = 1000 },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function ()
+      vim.opt.list = true
+      -- vim.opt.listchars:append "space:⋅"
+
+      require("indent_blankline").setup {
+          -- space_char_blankline = " ",
+          show_current_context = true,
+          show_current_context_start = true,
+      }
+    end,
+  },
   -- }}}
 
   -- {{{ Git
