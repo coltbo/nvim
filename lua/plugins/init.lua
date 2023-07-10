@@ -8,11 +8,9 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    config = function()
-      require("catppuccin").setup({
-        flavour = "mocha",
-      })
-    end
+    opts = {
+      flavour = "mocha",
+    }
   },
   {
     "marko-cerovac/material.nvim",
@@ -37,14 +35,14 @@ return {
         "nvim-tree",
         "nvim-web-devicons",
         "telescope",
-        "which-key"
+        "which-key",
+        "indent-blankline"
       },
       disable = {
         colored_cursor = true,
       }
     }
   },
-  { "ellisonleao/gruvbox.nvim", priority = 1000 },
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function ()

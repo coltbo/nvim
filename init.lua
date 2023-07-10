@@ -78,4 +78,4 @@ vim.api.nvim_create_autocmd(
 vim.g.material_style = "darker"
 
 vim.o.background = "dark"
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("material")
