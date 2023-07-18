@@ -8,7 +8,7 @@ map("n", "<C-k>", "<cmd>wincmd k<cr>", opts)
 map("n", "<C-l>", "<cmd>wincmd l<cr>", opts)
 -- }}}
 
--- {{{ trouble 
+-- {{{ trouble
 -- Lua
 map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
@@ -28,3 +28,7 @@ map("n", "<A-,>", "<cmd>tabprevious<cr>", opts)
 -- map('n', '<leader>t', "<cmd>ToggleTerm<cr>", opts)
 vim.cmd [[tnoremap <Esc> <C-\><C-n>]]
 -- }}}
+
+map("n", "[c", function()
+  require("treesitter-context").go_to_context()
+end, opts)

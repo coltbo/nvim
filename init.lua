@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.g.mapleader = " "
+vim.g.mapleader = ","
 
 require("lazy").setup("plugins")
 require('keybinds')
@@ -78,4 +78,4 @@ vim.api.nvim_create_autocmd(
 vim.g.material_style = "darker"
 
 vim.o.background = "dark"
-vim.cmd.colorscheme("material")
+vim.cmd.colorscheme("kanagawa")

@@ -12,43 +12,13 @@ return {
       flavour = "mocha",
     }
   },
-  {
-    "marko-cerovac/material.nvim",
-    opts = {
-      styles = {
-        comments = {
-          italic = true
-        },
-        keywords = {
-          italic = true
-        },
-        functions = {
-          bold = true,
-          italic = true
-        }
-      },
-      plugins = {
-        "dap",
-        "neogit",
-        "gitsigns",
-        "nvim-cmp",
-        "nvim-tree",
-        "nvim-web-devicons",
-        "telescope",
-        "which-key",
-        "indent-blankline"
-      },
-      disable = {
-        colored_cursor = true,
-      }
-    }
-  },
+  "rebelot/kanagawa.nvim",
   {
     "lukas-reineke/indent-blankline.nvim",
-    config = function ()
+    config = function()
       require("indent_blankline").setup {
-          show_current_context = true,
-          show_current_context_start = true,
+        show_current_context = true,
+        show_current_context_start = true,
       }
     end,
   },
