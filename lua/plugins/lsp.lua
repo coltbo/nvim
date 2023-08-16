@@ -73,6 +73,11 @@ return {
         end,
       }
 
+      lspconfig.ocamllsp.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "Show diagnostics" })
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Goto next diagnostic" })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })

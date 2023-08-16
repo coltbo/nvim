@@ -12,7 +12,18 @@ return {
       flavour = "mocha",
     }
   },
-  "rebelot/kanagawa.nvim",
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require('kanagawa').setup({
+        theme = "dragon",
+        background = {
+          dark = "dragon",
+          light = "lotus"
+        }
+      })
+    end
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()

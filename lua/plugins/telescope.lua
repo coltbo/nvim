@@ -9,7 +9,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
       -- {{{ file searching
-      { "<leader>ff", utils.telescope("find_files"),             desc = "Search files" },
+      { "<C-p>", utils.telescope("find_files"),             desc = "Search files" },
       { "<leader>fg", utils.telescope("live_grep"),              desc = "Live grep" },
       { "<leader>bb", "<cmd>Telescope buffers<cr>",              desc = "Search buffer" },
       { "<leader>fb", "<cmd>Telescope file_browser<cr>",         desc = "File browser" },

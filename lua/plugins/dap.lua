@@ -47,7 +47,7 @@ return {
           cwd = '${workspaceFolder}',
           stopOnEntry = false,
         }
-      }
+      },
     }
   end
 }
