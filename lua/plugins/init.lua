@@ -6,14 +6,8 @@ return {
   -- {{{ ui
   "nvim-tree/nvim-web-devicons",
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    opts = {
-      flavour = "mocha",
-    }
-  },
-  {
     "rebelot/kanagawa.nvim",
+    lazy = true,
     config = function()
       require('kanagawa').setup({
         theme = "dragon",
@@ -27,16 +21,19 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("indent_blankline").setup {
-        show_current_context = true,
-        show_current_context_start = true,
-      }
-    end,
+      require("ibl").setup()
+    end
   },
   -- }}}
 
   -- {{{ Git
-  "tpope/vim-fugitive",
+  {
+    "tpope/vim-fugitive",
+    lazy = true,
+    keys = {
+      { "<C-g>", "<cmd>Git<cr>", desc = "Open git" }
+    }
+  },
   {
     "lewis6991/gitsigns.nvim",
     dependencies = { 'nvim-lua/plenary.nvim' },
