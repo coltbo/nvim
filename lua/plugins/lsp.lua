@@ -98,10 +98,23 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+        enabled = function()
+          local context = require 'cmp.config.context'
+
+          if vim.api.nvim_get_mode().mode == 'c' then
+            return true
+          else
+            return not context.in_treesitter_capture("comment")
+                and not context.in_syntax_group("Comment")
+          end
+        end,
+        view = {
+          entries = { name = 'custom', selection_order = 'near_cursor' }
         },
+        -- window = {
+        --   completion = cmp.config.window.bordered(),
+        --   documentation = cmp.config.window.bordered(),
+        -- },
         mapping = {
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -153,6 +166,7 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
+          { name = "path" },
         })
       })
 

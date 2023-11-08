@@ -1,8 +1,4 @@
 return {
-  -- {{{ utilities
-  "nvim-telescope/telescope.nvim",
-  -- }}}
-
   -- {{{ ui
   "nvim-tree/nvim-web-devicons",
   {
@@ -18,22 +14,9 @@ return {
       })
     end
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("ibl").setup()
-    end
-  },
   -- }}}
 
   -- {{{ Git
-  {
-    "tpope/vim-fugitive",
-    lazy = true,
-    keys = {
-      { "<C-g>", "<cmd>Git<cr>", desc = "Open git" }
-    }
-  },
   {
     "lewis6991/gitsigns.nvim",
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -41,5 +24,13 @@ return {
       require("gitsigns").setup()
     end
   },
+  -- }}}
+
+  -- {{{ Utils
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}
+  }
   -- }}}
 }

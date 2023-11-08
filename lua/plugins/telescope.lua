@@ -1,16 +1,13 @@
-local utils = require("utils")
-
 return {
   "nvim-telescope/telescope-fzy-native.nvim",
-  "nvim-telescope/telescope-file-browser.nvim",
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
       -- {{{ file searching
-      { "<leader>ff", utils.telescope("find_files"),             desc = "Search files" },
-      { "<leader>fg", utils.telescope("live_grep"),              desc = "Live grep" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>",               desc = "Search files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>",                desc = "Live grep" },
       { "<leader>bb", "<cmd>Telescope buffers<cr>",              desc = "Search buffer" },
       { "<leader>fb", "<cmd>Telescope file_browser<cr>",         desc = "File browser" },
       -- }}}
@@ -31,14 +28,6 @@ return {
     },
     config = function()
       require("telescope").setup {
-        defaults = {
-          prompt_prefix = " ",
-        },
-        extensions = {
-          file_browser = {
-            hijack_netrw = true,
-          }
-        },
         pickers = {
           lsp_references = {
             theme = "dropdown"
@@ -56,7 +45,6 @@ return {
       }
 
       require("telescope").load_extension("fzy_native")
-      require("telescope").load_extension("file_browser")
     end
   }
 }
