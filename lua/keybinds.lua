@@ -17,3 +17,5 @@ map("n", "<A-,>", "<cmd>tabprevious<cr>", opts)
 map("n", "[c", function()
   require("treesitter-context").go_to_context()
 end, opts)
+
+map("n", "ex", "<cmd>Explore<cr>", opts)

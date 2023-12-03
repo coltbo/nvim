@@ -12,10 +12,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.g.mapleader = ","
 
 require("lazy").setup("plugins")
@@ -65,5 +61,4 @@ vim.o.shiftwidth    = 2
 
 -- }}}
 
-vim.o.background = "dark"
-vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("desert")
