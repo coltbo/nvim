@@ -78,11 +78,6 @@ return {
         capabilities = capabilities,
       }
 
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "Show diagnostics" })
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Goto next diagnostic" })
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })
-      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { desc = "Add buffer diagnostics to the location list" })
-
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
@@ -152,7 +147,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
