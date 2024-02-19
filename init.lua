@@ -30,27 +30,27 @@ vim.o.background    = "dark"
 
 -- Behaviour
 vim.o.hlsearch     = false
-vim.o.ignorecase   = true  -- Ignore case when using lowercase in search
-vim.o.smartcase    = true  -- But don't ignore it when using upper case
+vim.o.ignorecase   = true -- Ignore case when using lowercase in search
+vim.o.smartcase    = true -- But don't ignore it when using upper case
 vim.o.smarttab     = true
 vim.o.smartindent  = true
-vim.o.expandtab    = true  -- Convert tabs to spaces.
+vim.o.expandtab    = true -- Convert tabs to spaces.
 vim.o.tabstop      = 2
 vim.o.softtabstop  = 2
 vim.o.shiftwidth   = 2
 vim.o.mouse        = 'a'
 
 -- Vim specific
-vim.o.hidden       = true  -- Do not save when switching buffers
+vim.o.hidden       = true -- Do not save when switching buffers
 vim.o.fileencoding = "utf-8"
 vim.o.spell        = false
 vim.o.spelllang    = "en_us"
 vim.o.completeopt  = "menuone,noinsert,noselect"
-vim.o.wildmode     = "longest,full"  -- Display auto-complete in Command Mode
+vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 vim.o.timeout      = true
 vim.o.timeoutlen   = 300
 -- }}}
 
 -- }}}
 
-vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("base16-tomorrow-night")

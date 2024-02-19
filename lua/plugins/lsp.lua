@@ -5,10 +5,7 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = bufnr, desc = "Goto declaration" })
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Goto definition" })
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr, desc = "Goto implementation" })
-  vim.keymap.set('n', 'gk', vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
+  vim.keymap.set('n', '<space>k', vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
   vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { buffer = bufnr, desc = "Add workspace folder" })
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
@@ -16,10 +13,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, { buffer = bufnr, desc = "List workspace folders" })
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Show type definition" })
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr, desc = "List references" })
+  vim.keymap.set('n', '<S-d>', vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Show type definition" })
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end,
     { buffer = bufnr, desc = "Format document" })
 end
@@ -78,6 +74,12 @@ return {
         capabilities = capabilities,
       }
 
+      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
@@ -103,13 +105,6 @@ return {
                 and not context.in_syntax_group("Comment")
           end
         end,
-        view = {
-          entries = { name = 'custom', selection_order = 'near_cursor' }
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
         mapping = {
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
