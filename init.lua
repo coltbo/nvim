@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ","
 
 require("lazy").setup("plugins")
+require('project')
 require('keybinds')
 
 -- {{{ options
@@ -53,4 +54,4 @@ vim.o.timeoutlen   = 300
 
 -- }}}
 
-vim.cmd.colorscheme("base16-tomorrow-night")
+vim.cmd.colorscheme("base16-ayu-dark")
