@@ -31,12 +31,13 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- {{{ starting language servers
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = { "*.c", "*.h", "*.cpp", "*.cc" },
   callback = function(args)
     vim.lsp.start({
       name = 'clangd',
-      cmd = { 'clangd' },
+      cmd = { 'clangd', '--clang-tidy' },
       root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'makefile', 'CMakeLists.txt' }, { upward = true })[1]),
     })
   end
@@ -52,6 +53,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     })
   end
 })
+-- }}}
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)

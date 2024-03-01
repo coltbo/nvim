@@ -28,7 +28,7 @@ vim.o.number        = true -- numbers
 vim.wo.cursorline   = true
 vim.o.background    = "dark"
 
--- Behaviour
+-- Behavior
 vim.o.hlsearch     = false
 vim.o.ignorecase   = true -- Ignore case when using lowercase in search
 vim.o.smartcase    = true -- But don't ignore it when using upper case
@@ -43,7 +43,7 @@ vim.o.mouse        = 'a'
 -- Vim specific
 vim.o.hidden       = true -- Do not save when switching buffers
 vim.o.fileencoding = "utf-8"
-vim.o.spell        = true
+vim.o.spell        = false
 vim.o.spelllang    = "en_us"
 vim.o.completeopt  = "menuone,noinsert,noselect"
 vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
@@ -53,4 +53,4 @@ vim.o.timeoutlen   = 300
 
 -- }}}
 
-vim.cmd.colorscheme("material")
+vim.cmd.colorscheme("catppuccin")

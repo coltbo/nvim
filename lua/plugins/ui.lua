@@ -1,18 +1,23 @@
 return {
   "nvim-tree/nvim-web-devicons",
 
-  -- {{{ colorschemes 
+  -- {{{ colorschemes
   {
-    "rose-pine/neovim",
-    name = "rose-pine"
-  },
-
-  {
-    'marko-cerovac/material.nvim',
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
     config = function()
-      vim.g.material_style = "darker"
+      require("catppuccin").setup {
+        flavour = "mocha",
+        color_overrides = {
+          mocha = {
+            base = "#000000",
+            mantle = "#000000",
+            crust = "#000000",
+          },
+        }
+      }
     end
-  }
-
+  },
   -- }}}
 }
