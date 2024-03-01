@@ -8,7 +8,11 @@ return {
   },
 
   {
-    "RRethy/base16-nvim"
+    'marko-cerovac/material.nvim',
+    config = function()
+      vim.g.material_style = "darker"
+    end
   }
+
   -- }}}
 }

@@ -5,6 +5,7 @@ return {
   -- tag = "*",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
+    vim.o.foldmethod = 'expr'
     require("neorg").setup {
       load = {
         ["core.defaults"] = {},    -- Loads default behaviour

@@ -16,6 +16,7 @@ vim.g.mapleader = ","
 
 require("lazy").setup("plugins")
 require('keybinds')
+require('lsp')
 
 -- {{{ options
 -- Visual
@@ -26,7 +27,6 @@ vim.o.rnu           = true -- Relative numbers
 vim.o.number        = true -- numbers
 vim.wo.cursorline   = true
 vim.o.background    = "dark"
-
 
 -- Behaviour
 vim.o.hlsearch     = false
@@ -43,7 +43,7 @@ vim.o.mouse        = 'a'
 -- Vim specific
 vim.o.hidden       = true -- Do not save when switching buffers
 vim.o.fileencoding = "utf-8"
-vim.o.spell        = false
+vim.o.spell        = true
 vim.o.spelllang    = "en_us"
 vim.o.completeopt  = "menuone,noinsert,noselect"
 vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
@@ -53,4 +53,4 @@ vim.o.timeoutlen   = 300
 
 -- }}}
 
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("material")
