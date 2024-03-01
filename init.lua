@@ -48,10 +48,9 @@ vim.o.spelllang    = "en_us"
 vim.o.completeopt  = "menuone,noinsert,noselect"
 vim.o.wildmode     = "longest,full" -- Display auto-complete in Command Mode
 vim.o.timeout      = true
-vim.o.timeoutlen   = 100
-vim.o.autochdir    = true
+vim.o.timeoutlen   = 300
 -- }}}
 
 -- }}}
 
-vim.cmd.colorscheme("base16-ayu-dark")
+vim.cmd.colorscheme("rose-pine")

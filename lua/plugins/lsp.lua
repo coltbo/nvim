@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
   end, { buffer = bufnr, desc = "List workspace folders" })
   vim.keymap.set('n', '<S-d>', vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Show type definition" })
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
+  vim.keymap.set('n', '<leader>c', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end,
     { buffer = bufnr, desc = "Format document" })
 end
