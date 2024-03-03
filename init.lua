@@ -16,7 +16,6 @@ vim.g.mapleader = ","
 
 require("lazy").setup("plugins")
 require('keybinds')
-require('lsp')
 
 -- {{{ options
 -- Visual
@@ -52,5 +51,4 @@ vim.o.timeoutlen   = 300
 -- }}}
 
 -- }}}
-
 vim.cmd.colorscheme("catppuccin")
