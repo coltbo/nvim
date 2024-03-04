@@ -2,12 +2,11 @@ local map = vim.keymap.set
 local opts = { silent = true, remap = true }
 
 -- {{{ dap
-map('n', 'ds', function() require('dap').step_over() end)
-map('n', 'di', function() require('dap').step_into() end)
-map('n', 'do', function() require('dap').step_out() end)
-map('n', '<Leader>B', function() require('dap').toggle_breakpoint() end)
-map('n', '<Leader>lp',
-  function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+map('n', '<F8>', function() require('dap').continue() end)
+map('n', '<F6>', function() require('dap').step_over() end)
+map('n', '<F5>', function() require('dap').step_into() end)
+map('n', '<F7>', function() require('dap').step_out() end)
+map('n', '<leader>B', function() require('dap').toggle_breakpoint() end)
 map('n', '<Leader>dr', function() require('dap').repl.open() end)
 map('n', '<Leader>dl', function() require('dap').run_last() end)
 map({ 'n', 'v' }, '<Leader>dh', function()

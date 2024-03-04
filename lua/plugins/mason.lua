@@ -1,23 +1,28 @@
 local on_attach = function(client, bufnr)
+  local map = vim.keymap.set
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', '<space>k', vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
-  vim.keymap.set('n', '<S-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { buffer = bufnr, desc = "Add workspace folder" })
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+  map('n', '<space>k', vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
+  map('n', '<S-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Show signature help" })
+  map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { buffer = bufnr, desc = "Add workspace folder" })
+  map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
     { buffer = bufnr, desc = "Remove workspace folder" })
-  vim.keymap.set('n', '<space>wl', function()
+  map('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, { buffer = bufnr, desc = "List workspace folders" })
-  vim.keymap.set('n', '<S-d>', vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Show type definition" })
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
-  vim.keymap.set('n', '<leader>c', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end,
+  map('n', '<S-d>', vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Show type definition" })
+  map('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" })
+  map('n', '<leader>c', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Show code actions" })
+  map('n', '<space>f', function() vim.lsp.buf.format { async = true } end,
     { buffer = bufnr, desc = "Format document" })
+  map('n', '<space>e', vim.diagnostic.open_float, { desc = "Show diagnostics" })
+  map('n', '[d', vim.diagnostic.goto_prev, { desc = "Goto next diagnostic" })
+  map('n', ']d', vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })
+  map('n', '<space>q', vim.diagnostic.setloclist, { desc = "Add buffer diagnostics to the location list" })
 end
 
 return {
