@@ -1,7 +1,12 @@
 return {
   "nvim-tree/nvim-web-devicons",
+  "rktjmp/lush.nvim",
 
   -- {{{ colorschemes
+  {
+    "mcchrish/zenbones.nvim",
+    name = "zenbones"
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -19,5 +24,26 @@ return {
       }
     end
   },
+  {
+    "rebelot/kanagawa.nvim",
+    priority = 1000,
+    config = function()
+      require('kanagawa').setup({
+        background = {
+          dark = "dragon",
+          light = "lotus"
+        }
+      })
+    end
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      require("rose-pine").setup({
+        variant = "moon",
+      })
+    end
+  }
   -- }}}
 }

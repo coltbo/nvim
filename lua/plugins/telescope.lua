@@ -1,6 +1,6 @@
 local function telescope_call(func)
-  local opts = require('telescope.themes').get_ivy {}
-  require('telescope.builtin')[func](opts)
+  --local opts = require('telescope.themes').get_ivy {}
+  require('telescope.builtin')[func]()
 end
 
 return {

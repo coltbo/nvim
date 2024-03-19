@@ -31,7 +31,16 @@ end, opts)
 
 map("n", "ex", "<cmd>Explore<cr>", opts)
 
+-- {{{ window moving
 map('n', "<S-Up>", "<cmd>winc k<cr>", { desc = "Move up" })
 map('n', "<S-Down>", "<cmd>winc j<cr>", { desc = "Move down" })
 map('n', "<S-Left>", "<cmd>winc h<cr>", { desc = "Move left" })
 map('n', "<S-Right>", "<cmd>winc l<cr>", { desc = "Move right" })
+-- }}}
+
+-- {{{ compiling
+map('n', '<leader>cc', '<cmd>make<cr>', { desc = "Compile" })
+map('n', '<leader>co', '<cmd>copen<cr>', { desc = "Open compile errors" })
+map('n', '<leader>cn', '<cmd>cnext<cr>', { desc = "Open compile errors" })
+map('n', '<leader>cp', '<cmd>cprevious<cr>', { desc = "Open compile errors" })
+-- }}}
